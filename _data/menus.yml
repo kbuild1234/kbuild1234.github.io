@@ -7,11 +7,13 @@ header:
   url: /#about
 - title: Services
   url: /#services
-- title: Members
-  url: /#members
-- title: History
-  url: /#timeline
+- title: Clients
+  url: /#clients
+# - title: Members
+#   url: /#members
+# - title: History
+#   url: /#timeline
 - title: Contacts
   url: /#contacts
-- title: Links
-  url: /links
+# - title: Links
+#   url: /links
