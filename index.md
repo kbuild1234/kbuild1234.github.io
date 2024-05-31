@@ -17,7 +17,7 @@ sections:
     title: Comprehensive health assessments
     text: Our comprehensive health screening program includes key body functions blood tests such as Liver, Prostate (PSA), Kidney and Wellperson whole body tests. We take a proactively approach to monitor potential health issues that could impact the workforce overall well-being and productivity.
     actions:
-      - title: Get In Touch!
+      - title: Get In Touch
         url: '#contacts'
         class: btn-light
 
