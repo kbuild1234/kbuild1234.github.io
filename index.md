@@ -3,8 +3,8 @@ layout: home
 header:
   title: HEALTH TESTS AND OCCUPATIONAL HEALTH SERVICE 
   text: >
-    Choose from home tests or mobile testing service at your site. Our occupational health practitioners
-    cover London and the Surrounding Regions
+    Choose from home tests or on-site testing at your location. Our occupational health practitioners
+    cover London and the surrounding regions
   action: # action button is optional
     label: Find Out More
     url: '#about'
