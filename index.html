@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CocoHealth - Premium Workplace Flu Vaccination Services</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #2d5a27;
+      --secondary-green: #4a7c59;
+      --accent-green: #6b9080;
+      --light-green: #a4c3b2;
+      --cream: #f6f4f0;
+      --warm-white: #fefcf7;
+      --charcoal: #2c2c2c;
+      --gold-accent: #d4af37;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* Header Section */
+    .header {
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+      color: white;
+      padding: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0 10 Q25 0 50 10 T100 10 V20 H0 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+      background-size: 200px 40px;
+      animation: wave 8s linear infinite;
+    }
+
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-200px); }
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .header-content {
+        grid-template-columns: 1fr 2fr;
+        text-align: left;
+      }
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      width: 200px;
+      height: 200px;
+      border: 3px solid white;
+      border-radius: 50%;
+      background: var(--warm-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .logo:hover {
+      transform: translateY(-5px) rotate(2deg);
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .logo-text {
+      color: var(--primary-green);
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .logo-main {
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--charcoal);
+      margin: 0;
+    }
+
+    .logo-subtitle {
+      font-size: 12px;
+      color: var(--primary-green);
+      font-weight: 600;
+      letter-spacing: 3px;
+      margin-top: 8px;
+    }
+
+    .header-text h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      margin: 0 0 16px;
+      font-weight: 300;
+      letter-spacing: -1px;
+    }
+
+    .header-text p {
+      font-size: 20px;
+      opacity: 0.95;
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-accent), #f4d03f);
+      color: var(--primary-green);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      margin-bottom: 24px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Main Content */
+    .content {
+      padding: 80px 0;
+    }
+
+    .card {
+      background: var(--warm-white);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+      padding: 40px;
+      margin-bottom: 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(106, 144, 128, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-green), var(--accent-green));
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    h2 {
+      font-size: 28px;
+      margin: 0 0 24px;
+      color: var(--primary-green);
+      font-weight: 300;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2 i {
+      color: var(--accent-green);
+    }
+
+    /* Form Styling */
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--primary-green);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 2px solid #e5e5e5;
+      background: var(--warm-white);
+      font-size: 16px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(106, 144, 128, 0.1);
+      transform: translateY(-2px);
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+      color: white;
+      border: none;
+      padding: 18px 32px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(45, 90, 39, 0.3);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    /* Features List */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(106, 144, 128, 0.05);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    ul li:hover {
+      background: rgba(106, 144, 128, 0.1);
+      transform: translateX(8px);
+    }
+
+    ul li::before {
+      content: '✓';
+      background: var(--accent-green);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Stats Section */
+    .stats {
+      background: var(--primary-green);
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 48px;
+      font-weight: 300;
+      margin-bottom: 8px;
+      color: var(--gold-accent);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.9;
+    }
+
+    /* FAQ Section */
+    .faq-item {
+      margin-bottom: 24px;
+      padding: 24px;
+      background: rgba(106, 144, 128, 0.05);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      background: rgba(106, 144, 128, 0.1);
+    }
+
+    .faq-question {
+      font-weight: 600;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .faq-answer {
+      color: var(--charcoal);
+      margin: 0;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50px;
+      color: var(--primary-green);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .contact-item:hover {
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--charcoal);
+      color: white;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .muted {
+      color: #666;
+      font-size: 14px;
+      font-style: italic;
+      margin-top: 16px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.4s; }
+    .card:nth-child(4) { animation-delay: 0.6s; }
+
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+      .header {
+        padding: 40px 0;
+      }
+      
+      .logo {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .logo-main {
+        font-size: 36px;
+      }
+      
+      .card {
+        padding: 24px;
+      }
+      
+      h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="wrap">
+      <div class="header-content">
+        <div class="logo-container">
+          <div class="logo">
+            <img src="assets/img/cocohealthlogo.jpeg" alt="CocoHealth Logo" />
+          </div>
+        </div>
+        <div class="header-text">
+          <div class="badge">🍃 2025 Flu Season</div>
+          <h1>Premium Workplace Health Services</h1>
+          <p>Professional nurse-led flu clinics delivered to your workplace across London & the South East. Experience seamless booking, comprehensive communications, and detailed uptake tracking.</p>
+          <div class="contact-info">
+            <a href="mailto:health@cocohealth.co.uk" class="contact-item">
+              <i class="fas fa-envelope"></i>
+              health@cocohealth.co.uk
+            </a>
+            <a href="tel:+447340677361" class="contact-item">
+              <i class="fas fa-phone"></i>
+              +44 7340 677 361
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Vaccinations Daily</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5min</div>
+          <div class="stat-label">Per Appointment</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">48hrs</div>
+          <div class="stat-label">Reporting Turnaround</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="content">
+    <div class="wrap">
+      <div class="grid">
+        <!-- Booking Form -->
+        <div class="card">
+          <h2><i class="fas fa-calendar-check"></i>Book Your Clinic</h2>
+          <form>
+            <div class="form-group">
+              <label>Organisation</label>
+              <input type="text" placeholder="Your company name" />
+            </div>
+            <div class="form-group">
+              <label>Primary Site Address</label>
+              <input type="text" placeholder="Building, street, postcode" />
+            </div>
+            <div class="form-group">
+              <label>Preferred Date</label>
+              <input type="date" />
+            </div>
+            <div class="form-group">
+              <label>Expected Headcount</label>
+              <input type="number" placeholder="e.g., 80 employees" />
+            </div>
+            <div class="form-group">
+              <label>Session Type</label>
+              <select>
+                <option>Half-day (~50 vaccinations)</option>
+                <option>Full day (~100+ vaccinations)</option>
+                <option>Multi-site route day</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Additional Notes</label>
+              <textarea rows="4" placeholder="Shift patterns, multiple rooms, access notes, special requirements..."></textarea>
+            </div>
+            <p class="muted">Submitting this form will open your email client with all details pre-filled for quick sending to our team.</p>
+            <button type="button" onclick="openEmail()">
+              <i class="fas fa-paper-plane"></i> Send Booking Request
+            </button>
+          </form>
+        </div>
+
+        <!-- Services Included -->
+        <div class="card">
+          <h2><i class="fas fa-shield-alt"></i>What's Included</h2>
+          <ul>
+            <li>Complete on-site clinic setup (meeting room friendly)</li>
+            <li>Digital consent & comprehensive eligibility screening</li>
+            <li>Professional vaccination by registered nurses</li>
+            <li>Post-clinic uptake summary & full documentation</li>
+            <li>Flexible scheduling for shift patterns</li>
+            <li>All clinical supplies & waste management</li>
+          </ul>
+          
+          <h2><i class="fas fa-clock"></i>Typical Throughput</h2>
+          <div class="faq-item">
+            <div class="faq-answer">
+              <strong>Half-day sessions:</strong> ~50 vaccinations<br>
+              <strong>Full day sessions:</strong> ~100+ vaccinations<br>
+              For larger sites, we coordinate split sessions across multiple rooms to maximize efficiency.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="card">
+        <h2><i class="fas fa-question-circle"></i>Frequently Asked Questions</h2>
+        <div class="faq-item">
+          <div class="faq-question">How long does each appointment take?</div>
+          <div class="faq-answer">Approximately 5 minutes per person, including consent verification, vaccination, and brief observation period.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Do you provide all clinical equipment?</div>
+          <div class="faq-answer">Absolutely. We supply vaccines, PPE, clinical consumables, and handle all sharps management and clinical waste disposal.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Can you cover multiple sites in one day?</div>
+          <div class="faq-answer">Yes, we specialize in multi-site route planning to efficiently cover depots, offices, and facilities within a single coordinated schedule.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What reporting do you provide?</div>
+          <div class="faq-answer">You'll receive comprehensive uptake percentages, DNA (Did Not Attend) analysis, and departmental breakdowns within 48 hours of clinic completion.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap">
+      <p>© 2025 CocoHealth Ltd • Delivering Excellence in Workplace Health Services</p>
+      <p>health@cocohealth.co.uk • +44 7340 677 361 • cocohealth.co.uk</p>
+    </div>
+  </footer>
+
+  <script>
+    function openEmail() {
+      const org = encodeURIComponent(document.querySelectorAll('input')[0].value || '');
+      const addr = encodeURIComponent(document.querySelectorAll('input')[1].value || '');
+      const date = encodeURIComponent(document.querySelectorAll('input')[2].value || '');
+      const head = encodeURIComponent(document.querySelectorAll('input')[3].value || '');
+      const type = encodeURIComponent(document.querySelector('select').value || '');
+      const notes = encodeURIComponent(document.querySelector('textarea').value || '');
+      
+      const body = `Dear CocoHealth Team,%0D%0A%0D%0AI would like to request a workplace flu vaccination clinic with the following details:%0D%0A%0D%0AOrganisation: ${org}%0D%0APrimary Site Address: ${addr}%0D%0APreferred Date: ${date}%0D%0AExpected Headcount: ${head}%0D%0ASession Type: ${type}%0D%0AAdditional Notes: ${notes}%0D%0A%0D%0APlease contact me to discuss availability and next steps.%0D%0A%0D%0AThank you,%0D%0A[Your Name]`;
+      
+      window.location.href = `mailto:health@cocohealth.co.uk?subject=CocoHealth%20Workplace%20Flu%20Clinic%20Booking%20Request&body=${body}`;
+    }
+
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Add loading animation
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1';
+    });
+  </script>
+</body>
+</html>
