@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CocoHealth - Premium Workplace Flu Vaccination Services</title>
+  <title>CocoHealth Booking Hub — Flu, Health Checks & Health Surveillance</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
@@ -456,6 +456,92 @@
     .card:nth-child(3) { animation-delay: 0.4s; }
     .card:nth-child(4) { animation-delay: 0.6s; }
 
+    /* Service-specific styles */
+    .service-box {
+      border: 1px solid rgba(106, 144, 128, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 16px;
+      background: rgba(106, 144, 128, 0.02);
+    }
+
+    .svc-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .svc-title small {
+      color: var(--accent-green);
+      font-style: italic;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    @media (min-width: 680px) {
+      .two-col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
+
+    /* Pricing table styles */
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: var(--warm-white);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .pricing-table td {
+      border: 1px solid rgba(106, 144, 128, 0.2);
+      padding: 12px 16px;
+      vertical-align: top;
+    }
+
+    .pricing-table tr:first-child td {
+      border-top: none;
+    }
+
+    .pricing-table td:first-child {
+      border-left: none;
+      font-weight: 500;
+    }
+
+    .pricing-table td:last-child {
+      border-right: none;
+      text-align: right;
+      font-weight: 600;
+      color: var(--primary-green);
+    }
+
     /* Responsive adjustments */
     @media (max-width: 767px) {
       .header {
@@ -492,9 +578,9 @@
           </div>
         </div>
         <div class="header-text">
-          <div class="badge">🍃 2025 Flu Season</div>
-          <h1>Premium Workplace Health Services</h1>
-          <p>Professional nurse-led flu clinics delivered to your workplace across London & the South East. Experience seamless booking, comprehensive communications, and detailed uptake tracking.</p>
+          <div class="badge">🍃 2025 Campaign</div>
+          <h1>Book On‑site Clinics — Flu, Health Checks & Health Surveillance</h1>
+          <p>We bring nurse‑led clinics to your workplace across London & the South East — meeting‑room setup, e‑consent and rapid reporting.</p>
           <div class="contact-info">
             <a href="mailto:health@cocohealth.co.uk" class="contact-item">
               <i class="fas fa-envelope"></i>
@@ -537,36 +623,133 @@
         <!-- Booking Form -->
         <div class="card">
           <h2><i class="fas fa-calendar-check"></i>Book Your Clinic</h2>
-          <form>
+          <form id="bookingForm">
             <div class="form-group">
               <label>Organisation</label>
-              <input type="text" placeholder="Your company name" />
+              <input id="org" type="text" placeholder="Company name" />
             </div>
+            
+            <div class="two-col">
+              <div class="form-group">
+                <label>Primary site address</label>
+                <input id="addr" type="text" placeholder="Building, street, postcode" />
+              </div>
+              <div class="form-group">
+                <label>Preferred date</label>
+                <input id="date" type="date" />
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div class="form-group">
+                <label>Contact name</label>
+                <input id="contact" type="text" placeholder="Your name" />
+              </div>
+              <div class="form-group">
+                <label>Contact email</label>
+                <input id="email" type="email" placeholder="you@company.com" />
+              </div>
+            </div>
+
             <div class="form-group">
-              <label>Primary Site Address</label>
-              <input type="text" placeholder="Building, street, postcode" />
+              <label>Services required (choose one or more)</label>
+              <div class="checkbox-group">
+                <label><input type="checkbox" id="svcFlu" /> Flu vaccination</label>
+                <label><input type="checkbox" id="svcChecks" /> Workplace health checks (blood tests)</label>
+                <label><input type="checkbox" id="svcSurv" /> Health surveillance</label>
+              </div>
             </div>
+
+            <!-- Flu configuration -->
+            <div id="fluBox" class="service-box" style="display:none;">
+              <div class="svc-title">
+                <h3>Flu Vaccination</h3>
+                <small>Typical throughput: ~50 half‑day / ~100 full day</small>
+              </div>
+              <div class="two-col">
+                <div class="form-group">
+                  <label>Expected headcount</label>
+                  <input id="fluHead" type="number" placeholder="e.g., 80" />
+                </div>
+                <div class="form-group">
+                  <label>Session type</label>
+                  <select id="fluSession">
+                    <option>Half‑day (~50 vaccinations)</option>
+                    <option>Full day (~100+ vaccinations)</option>
+                    <option>Multi‑site route day</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Notes (shift patterns, multiple rooms, access…)</label>
+                <textarea id="fluNotes" rows="3" placeholder="Any specific requirements or notes..."></textarea>
+              </div>
+            </div>
+
+            <!-- Health checks configuration -->
+            <div id="checksBox" class="service-box" style="display:none;">
+              <div class="svc-title">
+                <h3>Workplace Health Checks (Blood Tests)</h3>
+                <small>UKAS‑accredited labs</small>
+              </div>
+              <div class="two-col">
+                <div class="form-group">
+                  <label>Expected participants</label>
+                  <input id="checksHead" type="number" placeholder="e.g., 30" />
+                </div>
+                <div class="form-group">
+                  <label>Panels required</label>
+                  <div class="checkbox-group">
+                    <label><input type="checkbox" class="panel" value="Well Person Profile" checked /> Well Person</label>
+                    <label><input type="checkbox" class="panel" value="Cardio‑Metabolic add‑on" /> Cardio‑Metabolic</label>
+                    <label><input type="checkbox" class="panel" value="Thyroid (TSH reflex FT4)" /> Thyroid</label>
+                    <label><input type="checkbox" class="panel" value="Iron status (Ferritin)" /> Iron</label>
+                    <label><input type="checkbox" class="panel" value="PSA (criteria‑based)" /> PSA</label>
+                    <label><input type="checkbox" class="panel" value="Vitamin D (25‑OH)" /> Vitamin D</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Notes (fasting preferences, leadership cohort…)</label>
+                <textarea id="checksNotes" rows="3" placeholder="Any specific requirements or notes..."></textarea>
+              </div>
+            </div>
+
+            <!-- Health surveillance configuration -->
+            <div id="survBox" class="service-box" style="display:none;">
+              <div class="svc-title">
+                <h3>Health Surveillance</h3>
+                <small>Role‑risk aligned scheduling</small>
+              </div>
+              <div class="two-col">
+                <div class="form-group">
+                  <label>Expected participants</label>
+                  <input id="survHead" type="number" placeholder="e.g., 40" />
+                </div>
+                <div class="form-group">
+                  <label>Surveillance types</label>
+                  <div class="checkbox-group">
+                    <label><input type="checkbox" class="surv" value="Spirometry (lung function)" /> Spirometry</label>
+                    <label><input type="checkbox" class="surv" value="Audiometry (hearing)" /> Audiometry</label>
+                    <label><input type="checkbox" class="surv" value="HAVS Tier 1–3" /> HAVS Tier 1–3</label>
+                    <label><input type="checkbox" class="surv" value="Vision screening" /> Vision screening</label>
+                    <label><input type="checkbox" class="surv" value="Safety‑critical medical" /> Safety‑critical medical</label>
+                    <label><input type="checkbox" class="surv" value="Night worker assessment" /> Night worker assessment</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Notes (exposure groups, shift windows, site rules…)</label>
+                <textarea id="survNotes" rows="3" placeholder="Any specific requirements or notes..."></textarea>
+              </div>
+            </div>
+
             <div class="form-group">
-              <label>Preferred Date</label>
-              <input type="date" />
+              <label>Additional information</label>
+              <textarea id="notes" rows="4" placeholder="Parking / site induction / security pass requirements…"></textarea>
             </div>
-            <div class="form-group">
-              <label>Expected Headcount</label>
-              <input type="number" placeholder="e.g., 80 employees" />
-            </div>
-            <div class="form-group">
-              <label>Session Type</label>
-              <select>
-                <option>Half-day (~50 vaccinations)</option>
-                <option>Full day (~100+ vaccinations)</option>
-                <option>Multi-site route day</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Additional Notes</label>
-              <textarea rows="4" placeholder="Shift patterns, multiple rooms, access notes, special requirements..."></textarea>
-            </div>
-            <p class="muted">Submitting this form will open your email client with all details pre-filled for quick sending to our team.</p>
+
+            <p class="muted">Submitting will open your email client addressed to <b>health@cocohealth.co.uk</b> with your selections prefilled.</p>
             <button type="button" onclick="openEmail()">
               <i class="fas fa-paper-plane"></i> Send Booking Request
             </button>
@@ -577,10 +760,10 @@
         <div class="card">
           <h2><i class="fas fa-shield-alt"></i>What's Included</h2>
           <ul>
-            <li>Complete on-site clinic setup (meeting room friendly)</li>
-            <li>Digital consent & comprehensive eligibility screening</li>
-            <li>Professional vaccination by registered nurses</li>
-            <li>Post-clinic uptake summary & full documentation</li>
+            <li>On‑site clinic set‑up (meeting room friendly)</li>
+            <li>E‑consent & eligibility (and clinical questionnaires for surveillance)</li>
+            <li>Registered nurse delivery (partner network for certain surveillance items)</li>
+            <li>Post‑clinic reporting: uptake %, DNAs, department roll‑ups within 48 hours</li>
             <li>Flexible scheduling for shift patterns</li>
             <li>All clinical supplies & waste management</li>
           </ul>
@@ -588,9 +771,9 @@
           <h2><i class="fas fa-clock"></i>Typical Throughput</h2>
           <div class="faq-item">
             <div class="faq-answer">
-              <strong>Half-day sessions:</strong> ~50 vaccinations<br>
-              <strong>Full day sessions:</strong> ~100+ vaccinations<br>
-              For larger sites, we coordinate split sessions across multiple rooms to maximize efficiency.
+              <strong>Flu:</strong> Half‑day ~50 • Full day ~100+<br>
+              <strong>Health checks:</strong> Typically 6–8 blood draws per 30 minutes<br>
+              <strong>Surveillance:</strong> Depends on modality (e.g., spirometry/audiometry slots 15–20 mins)
             </div>
           </div>
         </div>
@@ -617,6 +800,46 @@
         </div>
       </div>
     </div>
+
+    <!-- Pricing Section -->
+    <div class="card">
+      <h2><i class="fas fa-pound-sign"></i>Transparent Pricing (2025/26)</h2>
+      
+      <h3>On‑site Flu Vaccination — Day‑rate</h3>
+      <table class="pricing-table">
+        <tbody>
+          <tr><td>Half‑day (up to ~50 vaccinations)</td><td>£595</td></tr>
+          <tr><td>Full day (up to ~100 vaccinations)</td><td>£995</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">Vaccine dose (quadrivalent, adult): £17.50 (1–49) • £15.50 (50–199) • £13.95 (200+). Inclusions: cold‑chain, PPE, sharps, e‑consent, uptake report within 48h. London/M25 included.</p>
+
+      <h3>Option — Per‑head (all‑in)</h3>
+      <table class="pricing-table">
+        <tbody>
+          <tr><td>≥60 booked (single site)</td><td>£22.50 per person</td></tr>
+          <tr><td>≥120 booked or multi‑room high‑throughput</td><td>£19.95 per person</td></tr>
+          <tr><td>Minimum booking</td><td>40 people (else day‑rate)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Health Checks (per person)</h3>
+      <table class="pricing-table">
+        <tbody>
+          <tr><td>Well Person Profile (baseline)</td><td>£99</td></tr>
+          <tr><td>Cardio‑Metabolic add‑on</td><td>+£35</td></tr>
+          <tr><td>Thyroid (TSH reflex FT4)</td><td>+£22</td></tr>
+          <tr><td>Iron status (Ferritin)</td><td>+£18</td></tr>
+          <tr><td>PSA (criteria‑based)</td><td>+£29</td></tr>
+          <tr><td>Vitamin D (25‑OH)</td><td>+£22</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Health Surveillance</h3>
+      <p class="muted">Pricing depends on modalities (spirometry, audiometry, HAVS tiers, etc.) and headcount. We'll quote once your request is submitted.</p>
+
+      <p class="muted"><strong>VAT:</strong> Vaccines/vouchers typically VAT‑exempt; service elements may be standard‑rated. Split‑line invoicing for clarity.</p>
+    </div>
   </main>
 
   <!-- Footer -->
@@ -628,26 +851,79 @@
   </footer>
 
   <script>
-    function openEmail() {
-      const org = encodeURIComponent(document.querySelectorAll('input')[0].value || '');
-      const addr = encodeURIComponent(document.querySelectorAll('input')[1].value || '');
-      const date = encodeURIComponent(document.querySelectorAll('input')[2].value || '');
-      const head = encodeURIComponent(document.querySelectorAll('input')[3].value || '');
-      const type = encodeURIComponent(document.querySelector('select').value || '');
-      const notes = encodeURIComponent(document.querySelector('textarea').value || '');
-      
-      const body = `Dear CocoHealth Team,%0D%0A%0D%0AI would like to request a workplace flu vaccination clinic with the following details:%0D%0A%0D%0AOrganisation: ${org}%0D%0APrimary Site Address: ${addr}%0D%0APreferred Date: ${date}%0D%0AExpected Headcount: ${head}%0D%0ASession Type: ${type}%0D%0AAdditional Notes: ${notes}%0D%0A%0D%0APlease contact me to discuss availability and next steps.%0D%0A%0D%0AThank you,%0D%0A[Your Name]`;
-      
-      window.location.href = `mailto:health@cocohealth.co.uk?subject=CocoHealth%20Workplace%20Flu%20Clinic%20Booking%20Request&body=${body}`;
+    // Show/hide service configuration sections
+    const svcFlu = document.getElementById('svcFlu');
+    const svcChecks = document.getElementById('svcChecks');
+    const svcSurv = document.getElementById('svcSurv');
+    const fluBox = document.getElementById('fluBox');
+    const checksBox = document.getElementById('checksBox');
+    const survBox = document.getElementById('survBox');
+
+    function toggleBox(cb, box){ box.style.display = cb.checked ? 'block' : 'none'; }
+    [svcFlu, svcChecks, svcSurv].forEach(cb => cb.addEventListener('change', () => {
+      toggleBox(svcFlu, fluBox);
+      toggleBox(svcChecks, checksBox);
+      toggleBox(svcSurv, survBox);
+    }));
+
+    function collectChecked(selector){
+      return Array.from(document.querySelectorAll(selector + ':checked')).map(el => el.value);
+    }
+
+    function openEmail(){
+      const org = encodeURIComponent(document.getElementById('org').value || '');
+      const addr = encodeURIComponent(document.getElementById('addr').value || '');
+      const date = encodeURIComponent(document.getElementById('date').value || '');
+      const contact = encodeURIComponent(document.getElementById('contact').value || '');
+      const email = encodeURIComponent(document.getElementById('email').value || '');
+      const notes = encodeURIComponent(document.getElementById('notes').value || '');
+
+      // Flu
+      const fluSelected = document.getElementById('svcFlu').checked;
+      const fluHead = encodeURIComponent(document.getElementById('fluHead').value || '');
+      const fluSession = encodeURIComponent(document.getElementById('fluSession').value || '');
+      const fluNotes = encodeURIComponent(document.getElementById('fluNotes').value || '');
+
+      // Checks
+      const checksSelected = document.getElementById('svcChecks').checked;
+      const checksHead = encodeURIComponent(document.getElementById('checksHead').value || '');
+      const checkPanels = encodeURIComponent(collectChecked('.panel').join(', ') || '');
+      const checksNotes = encodeURIComponent(document.getElementById('checksNotes').value || '');
+
+      // Surveillance
+      const survSelected = document.getElementById('svcSurv').checked;
+      const survHead = encodeURIComponent(document.getElementById('survHead').value || '');
+      const survTypes = encodeURIComponent(collectChecked('.surv').join(', ') || '');
+      const survNotes = encodeURIComponent(document.getElementById('survNotes').value || '');
+
+      let body = `Organisation: ${org}%0D%0AAddress: ${addr}%0D%0APreferred date: ${date}%0D%0AContact: ${contact}%0D%0AContact email: ${email}%0D%0A`;
+
+      if(fluSelected){
+        body += `%0D%0A-- Flu Vaccination --%0D%0AHeadcount: ${fluHead}%0D%0ASession: ${fluSession}%0D%0ANotes: ${fluNotes}`;
+      }
+      if(checksSelected){
+        body += `%0D%0A%0D%0A-- Workplace Health Checks --%0D%0AParticipants: ${checksHead}%0D%0APanels: ${checkPanels}%0D%0ANotes: ${checksNotes}`;
+      }
+      if(survSelected){
+        body += `%0D%0A%0D%0A-- Health Surveillance --%0D%0AParticipants: ${survHead}%0D%0AModalities: ${survTypes}%0D%0ANotes: ${survNotes}`;
+      }
+
+      body += `%0D%0A%0D%0AAdditional information:%0D%0A${notes}`;
+
+      const subject = `CocoHealth On‑site Clinic Request — ${decodeURIComponent(org) || 'New Enquiry'}`;
+      window.location.href = `mailto:health@cocohealth.co.uk?subject=${encodeURIComponent(subject)}&body=${body}`;
     }
 
     // Add smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
       });
     });
 
