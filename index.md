@@ -160,16 +160,13 @@ sections:
     section_id: contacts
     title: Contact Us
     text: >-
-      Have a call with us, drop us a WhatsApp message or Email us and we will promptly get back to you to discuss your needs
+      Have a call with us or Email us and we will promptly get back to you to discuss your needs
     actions:
     - title: +44 734 0677361
       icon: bi-telephone-fill
     - title: E-Mail
       icon: bi-envelope-fill
       url: mailto:health@cocohealth.co.uk
-    - title: +44 734 0677361 (WhatsApp)
-      icon: bi-whatsapp
-      url: '#'
     # - title: Facebook
     #   icon: bi-facebook
     #   url: '#'
