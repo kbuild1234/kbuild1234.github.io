@@ -23,7 +23,7 @@ img{max-width:100%}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:800;color:var(--green-900);white-space:nowrap}
 .brand img{width:46px;height:46px;border-radius:50%;object-fit:cover}
 .nav-links{display:flex;gap:22px;align-items:center;margin-left:auto;flex-wrap:wrap}
-.nav-links a{text-decoration:none;font-weight:650;font-size:14px;color:#355048}
+.nav-links a:not(.btn){text-decoration:none;font-weight:650;font-size:14px;color:#355048}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:11px;text-decoration:none;font-weight:800;border:1px solid transparent;transition:.2s ease;cursor:pointer}
 .btn:hover{transform:translateY(-1px)}
 .btn-primary{background:var(--green-800);color:var(--white);box-shadow:0 8px 20px rgba(36,88,68,.16)}
@@ -77,6 +77,7 @@ tr:last-child td{border-bottom:0}
 .cta h2{color:white}
 .cta p{color:#dbeae2}
 .quote-box{background:white;border-radius:18px;padding:26px;color:var(--ink)}
+.quote-box .note{color:var(--muted)}
 .quote-box .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 input,select,textarea{width:100%;padding:13px 14px;border:1px solid #c9d5cf;border-radius:10px;font:inherit;background:white}
 label{display:block;font-size:13px;font-weight:800;color:#395047;margin-bottom:5px}
