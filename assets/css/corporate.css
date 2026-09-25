@@ -55,11 +55,12 @@ h3{color:var(--green-900);margin:0 0 8px}
 .card p{color:var(--muted)}
 .card-link{display:inline-block;margin-top:8px;font-weight:850;color:var(--green-800)}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
-.price-card{position:relative;background:white;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
+.price-card{position:relative;display:flex;flex-direction:column;background:white;border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}
 .price-card.featured{border:2px solid var(--green-700);transform:translateY(-4px)}
 .ribbon{position:absolute;right:18px;top:16px;background:var(--green-100);color:var(--green-900);font-size:12px;font-weight:850;padding:6px 10px;border-radius:999px}
 .price{font-size:38px;font-weight:900;letter-spacing:-.035em;color:var(--green-900);margin:8px 0}
 .price small{font-size:14px;font-weight:700;color:var(--muted)}
+.price-card .clean-list{flex:1}
 .clean-list{list-style:none;padding:0;margin:18px 0}
 .clean-list li{padding:8px 0;border-bottom:1px solid #eef3f0}
 .clean-list li:last-child{border-bottom:0}
