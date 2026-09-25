@@ -64,6 +64,15 @@ h3{color:var(--green-900);margin:0 0 8px}
 .clean-list{list-style:none;padding:0;margin:18px 0}
 .clean-list li{padding:8px 0;border-bottom:1px solid #eef3f0}
 .clean-list li:last-child{border-bottom:0}
+.clean-list .includes-row{padding:9px 0}
+.package-includes{position:relative;display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:8px;background:var(--green-100);color:var(--green-900);font-weight:850;cursor:help;outline:none}
+.package-includes:focus-visible{box-shadow:0 0 0 3px rgba(52,115,90,.25)}
+.info-mark{display:grid;place-items:center;width:18px;height:18px;border:1px solid var(--green-700);border-radius:50%;font-size:12px;font-weight:900;line-height:1}
+.package-tooltip{position:absolute;left:0;bottom:calc(100% + 9px);z-index:10;width:280px;max-width:calc(100vw - 64px);padding:11px 13px;border-radius:8px;background:var(--green-900);color:white;font-size:13px;font-weight:600;line-height:1.45;box-shadow:0 10px 26px rgba(23,63,50,.22);opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s ease,transform .15s ease,visibility .15s}
+.package-includes:hover .package-tooltip,.package-includes:focus .package-tooltip{opacity:1;visibility:visible;transform:translateY(0)}
+.custom-package{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:28px;padding:18px 20px;border-left:4px solid var(--gold);background:white}
+.custom-package strong{color:var(--green-900)}
+.custom-package a{font-weight:850;color:var(--green-800)}
 .note{font-size:14px;color:var(--muted)}
 .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:white}
 table{border-collapse:collapse;width:100%;min-width:700px}
@@ -99,6 +108,7 @@ details p{color:var(--muted)}
   .trust-grid{grid-template-columns:1fr 1fr}
   .nav-links a:not(.btn){display:none}
   .price-card.featured{transform:none}
+  .custom-package{align-items:flex-start;flex-direction:column;gap:6px}
 }
 @media(max-width:560px){
   .container{width:min(100% - 24px,1160px)}
