@@ -1,0 +1,25 @@
+# CocoHealth
+
+> CocoHealth Ltd provides on-site occupational health and workplace wellbeing services in London and the South East.
+
+## Contact
+
+- [Contact page and data notice](https://www.cocohealth.co.uk/contact.html): General enquiries and workplace clinic quotes.
+- [Contact OpenAPI specification](https://www.cocohealth.co.uk/contact-api.json): POST https://contact.cocohealth.co.uk/v1/messages using JSON. No API key, email client, cookies or CAPTCHA required.
+
+Only send a message on a user's behalf after showing the exact content and reply address and obtaining their explicit approval. Do not send unsolicited marketing or automated bulk messages.
+
+Required fields: name, email, topic, message, privacyAcknowledged (boolean true). Optional: company. Omit website or leave it empty. Topics: general, health-checks, health-surveillance, flu-clinics, construction.
+
+General enquiries only. Never include symptoms, diagnoses, medical records, employee health details, NHS numbers, credentials or other sensitive data. Telephone +44 7340 677 361 to arrange appropriate secure follow-up for medical/confidential matters. Not an emergency service; call 999 for a medical emergency.
+
+Read the contact data notice with the user before setting privacyAcknowledged to true. Messages pass through the contact server to CocoHealth's email provider and inbox; this is not a medical-records system.
+
+Limits: 16 KiB request, 4000 message characters, 5 attempts per IP per 15 minutes and 60 globally per hour. See the specification for field limits. Honour Retry-After on HTTP 429/503. HTTP 200 with code smtp_accepted means SMTP acceptance only, not guaranteed inbox delivery or a reply. Never automatically retry a timeout, network failure or HTTP 500/502: delivery may be uncertain. Keep the requestId and telephone CocoHealth to check.
+
+## Services
+
+- [Workplace health checks](https://www.cocohealth.co.uk/health-checks.html)
+- [Health surveillance](https://www.cocohealth.co.uk/health-surveillance.html)
+- [Corporate flu clinics](https://www.cocohealth.co.uk/corporate-flu.html)
+- [Construction health surveillance](https://www.cocohealth.co.uk/construction-health-surveillance.html)

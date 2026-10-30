@@ -1,0 +1,85 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CocoHealth general enquiry API",
+    "version": "1.0.0",
+    "description": "Submit a general enquiry without an email client, API key or CAPTCHA. Obtain the user's explicit approval of the exact message and reply email before submitting. Never send medical, employee health or other sensitive information, attachments, unsolicited marketing or automated bulk messages. For medical enquiries call +44 7340 677 361 to arrange secure follow-up. Contact data notice: https://www.cocohealth.co.uk/contact.html#contact-data-notice. An SMTP acceptance is not a guarantee of inbox delivery or a reply."
+  },
+  "servers": [{ "url": "https://contact.cocohealth.co.uk" }],
+  "security": [],
+  "paths": {
+    "/v1/messages": {
+      "post": {
+        "operationId": "sendCocoHealthEnquiry",
+        "summary": "Send an approved general enquiry to CocoHealth",
+        "description": "POST UTF-8 JSON (preferred) or URL-encoded fields, at most 16384 bytes. No cookies or authentication. Up to 5 attempts per IP per 15 minutes and 60 attempts globally per hour, including invalid requests. Browser origins are restricted to the CocoHealth website; server-side agents can omit Origin. Success is returned only after SMTP acceptance. Do not automatically retry on network errors, timeouts, 500 or 502: acceptance may be uncertain. Keep the reference and contact CocoHealth by telephone. On 429 or 503, honour Retry-After and obtain user approval before a later retry.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": { "schema": { "$ref": "#/components/schemas/Enquiry" } },
+            "application/x-www-form-urlencoded": { "schema": { "$ref": "#/components/schemas/Enquiry" } }
+          }
+        },
+        "responses": {
+          "200": { "description": "SMTP server accepted the message for delivery.", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Result" } }, "text/html": { "schema": { "type": "string" } } } },
+          "400": { "$ref": "#/components/responses/Failure" },
+          "403": { "$ref": "#/components/responses/Failure" },
+          "413": { "$ref": "#/components/responses/Failure" },
+          "415": { "$ref": "#/components/responses/Failure" },
+          "429": { "$ref": "#/components/responses/Retry" },
+          "500": { "$ref": "#/components/responses/Failure" },
+          "502": { "$ref": "#/components/responses/Failure" },
+          "503": { "$ref": "#/components/responses/Retry" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Enquiry": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "email", "topic", "message", "privacyAcknowledged"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1, "maxLength": 100, "description": "Sender's name; no control characters." },
+          "email": { "type": "string", "format": "email", "maxLength": 254, "description": "Single ASCII reply address. Sender ownership is not verified; no display names or address lists." },
+          "company": { "type": "string", "maxLength": 150, "description": "Optional company name; no control characters." },
+          "topic": { "type": "string", "enum": ["general", "health-checks", "health-surveillance", "flu-clinics", "construction"] },
+          "message": { "type": "string", "minLength": 1, "maxLength": 4000, "description": "Plain text general enquiry only. No medical or sensitive details. Whitespace-only messages are rejected." },
+          "privacyAcknowledged": { "type": "boolean", "const": true, "description": "Must be true after the user reads the contact data notice and confirms no medical or sensitive details are included. For URL-encoded forms send the literal string true." },
+          "website": { "type": "string", "maxLength": 0, "description": "Anti-spam field. Omit or leave empty." }
+        },
+        "example": {
+          "name": "Example sender",
+          "email": "sender@example.com",
+          "company": "Example company",
+          "topic": "health-checks",
+          "message": "Please quote for workplace health checks for 25 staff in London.",
+          "privacyAcknowledged": true
+        }
+      },
+      "Result": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ok", "code", "message", "requestId"],
+        "properties": {
+          "ok": { "type": "boolean" },
+          "code": { "type": "string", "description": "smtp_accepted on success; a machine-readable error code otherwise." },
+          "message": { "type": "string" },
+          "requestId": { "type": "string", "format": "uuid" }
+        }
+      }
+    },
+    "responses": {
+      "Failure": {
+        "description": "Validation, origin, size, media type or delivery error. Proxy-level failures may return plain text/HTML. 502 means delivery is unconfirmed, not necessarily unsent.",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Result" } }, "text/html": { "schema": { "type": "string" } } }
+      },
+      "Retry": {
+        "description": "Rate limit or concurrent delivery limit reached. Do not retry before Retry-After seconds.",
+        "headers": { "Retry-After": { "schema": { "type": "integer", "minimum": 1 }, "description": "Seconds to wait." } },
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Result" } }, "text/html": { "schema": { "type": "string" } } }
+      }
+    }
+  }
+}

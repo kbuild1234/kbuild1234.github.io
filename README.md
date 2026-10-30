@@ -32,9 +32,21 @@ Note: Developing for github pages is tricky. You should always rely on
 [safe plugins](https://pages.github.com/versions/) because any other, that's not
 in the list will simply not run.
 
+# Contact form
+
+[`contact.html`](contact.html) provides a general-enquiry form without an email
+client, including a no-JavaScript fallback. Quote buttons lead to this page.
+[`contact-api.json`](contact-api.json) and [`llms.txt`](llms.txt) document the
+public API for agents acting with the sender's permission.
+
+GitHub Pages hosts only the public static files. Deploy the separate
+[`contact-relay`](contact-relay/README.md) service to Linode at
+`https://contact.cocohealth.co.uk` and configure SMTP credentials **only on that
+server**. Follow its deployment and privacy launch checklist before publishing:
+the form cannot deliver messages until DNS, HTTPS and the relay are configured.
+Medical/sensitive information is explicitly prohibited; telephone is provided
+to arrange appropriate secure follow-up. The existing `/forms/` embed is unchanged.
+
 # Good Ideas
-* Contacts submit form example
-  * https://github.com/Codevelopr/codevelopr.github.io/
-  * https://jekyllrb.com/resources/#forms
 * Table of contents example
   * https://github.com/fedenunez/fedenunez.github.io

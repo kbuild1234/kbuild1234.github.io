@@ -1,0 +1,28 @@
+[Unit]
+Description=CocoHealth general enquiry relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=cocohealth-contact
+Group=cocohealth-contact
+WorkingDirectory=/opt/cocohealth-contact
+Environment=NODE_ENV=production
+EnvironmentFile=/etc/cocohealth-contact.env
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=70
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+RestrictSUIDSGID=true
+UMask=0077
+MemoryMax=256M
+LimitCORE=0
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

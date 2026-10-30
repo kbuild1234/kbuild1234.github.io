@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact CocoHealth | Workplace Health Enquiries</title>
+  <meta name="description" content="Send CocoHealth a general enquiry or request a workplace health quote online. No email app is needed. A public API is available for authorised AI agents.">
+  <!-- Preserve Origin on native cross-origin POSTs without sharing the page URL. -->
+  <meta name="referrer" content="strict-origin">
+  <link rel="canonical" href="https://www.cocohealth.co.uk/contact.html">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/corporate.css">
+  <link rel="stylesheet" href="/assets/css/contact.css">
+  <link rel="service-desc" href="/contact-api.json" type="application/vnd.oai.openapi+json" title="CocoHealth contact API">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact CocoHealth",
+    "url": "https://www.cocohealth.co.uk/contact.html",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "CocoHealth Ltd",
+      "url": "https://www.cocohealth.co.uk/",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "General enquiries",
+        "telephone": "+44-7340-677361",
+        "email": "health@cocohealth.co.uk",
+        "availableLanguage": "English"
+      }
+    }
+  }
+  </script>
+  <script src="/assets/js/contact.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contact-form">Skip to contact form</a>
+  <nav class="nav" aria-label="Main navigation"><div class="container nav-inner">
+    <a class="brand" href="/"><img src="/assets/img/cocohealthlogo.jpeg" alt="CocoHealth"><span>CocoHealth</span></a>
+    <div class="nav-links">
+      <a href="/health-checks.html">Health Checks</a>
+      <a href="/health-surveillance.html">Health Surveillance</a>
+      <a href="/corporate-flu.html">Flu Clinics</a>
+      <a href="/construction-health-surveillance.html">Construction</a>
+      <a class="btn btn-primary" href="/contact.html" aria-current="page">Contact us</a>
+    </div>
+  </div></nav>
+  <header class="hero"><div class="container">
+    <span class="eyebrow">Let's plan your workplace clinic</span>
+    <h1>Contact CocoHealth</h1>
+    <p>Ask a question or request a quote. Send your enquiry here without opening an email app.</p>
+  </div></header>
+  <main class="section"><div class="container two-col">
+    <section aria-labelledby="enquiry-heading">
+      <h2 id="enquiry-heading">How can we help?</h2>
+      <p>For a quote, tell us your company, workplace postcode, approximate headcount and the service you need.</p>
+      <div class="contact-notice" id="medical-notice">
+        <strong>General enquiries only</strong>
+        <p>Do not send symptoms, diagnoses, medical records, employee health details, NHS numbers, passwords or other sensitive information. This form is not a clinical or emergency service and is not continuously monitored.</p>
+        <p>For a medical or confidential enquiry, call <a href="tel:+447340677361">+44 7340 677 361</a> to arrange an appropriate secure follow-up. For a medical emergency, call 999.</p>
+      </div>
+      <form id="contact-form" action="https://contact.cocohealth.co.uk/v1/messages" method="post" accept-charset="UTF-8" aria-describedby="medical-notice contact-data-notice">
+        <div class="field">
+          <label for="contact-name">Your name (required)</label>
+          <input id="contact-name" name="name" autocomplete="name" maxlength="100" required>
+        </div>
+        <div class="field">
+          <label for="contact-email">Reply email (required)</label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+        </div>
+        <div class="field">
+          <label for="contact-company">Company (optional)</label>
+          <input id="contact-company" name="company" autocomplete="organization" maxlength="150">
+        </div>
+        <div class="field">
+          <label for="contact-topic">Enquiry about (required)</label>
+          <select id="contact-topic" name="topic" required>
+            <option value="general">General enquiry</option>
+            <option value="health-checks">Workplace health checks</option>
+            <option value="health-surveillance">Health surveillance</option>
+            <option value="flu-clinics">Flu clinics</option>
+            <option value="construction">Construction</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="contact-message">Message (required)</label>
+          <textarea id="contact-message" name="message" rows="7" maxlength="4000" required aria-describedby="message-help medical-notice"></textarea>
+          <p class="note" id="message-help">Up to 4,000 characters. No attachments or medical information.</p>
+        </div>
+        <div class="contact-trap" aria-hidden="true">
+          <label for="contact-website">Leave this field empty</label>
+          <input id="contact-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="contact-notice" id="contact-data-notice">
+          <strong>How your enquiry is handled</strong>
+          <p>CocoHealth Ltd uses your name, reply email, company (if supplied) and message to handle and respond to your enquiry. Your submission passes through our contact server to our email provider and business inbox. It is not a secure medical-records service.</p>
+          <p>The relay does not save message bodies to disk or application logs. Enquiries remain in our email systems for handling and follow-up; this form does not automatically delete inbox copies. Temporary IP-based rate limits help prevent abuse. Call us about access, deletion or other privacy questions.</p>
+        </div>
+        <div class="field">
+          <label class="contact-check" for="contact-privacy">
+            <input id="contact-privacy" name="privacyAcknowledged" type="checkbox" value="true" required>
+            <span>I have read the contact data notice and confirm that my message contains no medical or sensitive information. (Required)</span>
+          </label>
+        </div>
+        <button class="btn btn-primary" type="submit" id="contact-submit">Send enquiry</button>
+        <p id="contact-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+        <noscript><p>You can submit this form without JavaScript. The contact server will display your result. If it is unavailable, use your browser's Back button to return or telephone us.</p></noscript>
+      </form>
+    </section>
+    <aside class="card" aria-labelledby="other-contact-heading">
+      <h2 id="other-contact-heading">Other ways to reach us</h2>
+      <p><a href="tel:+447340677361">+44 7340 677 361</a><br><a href="mailto:health@cocohealth.co.uk">health@cocohealth.co.uk</a></p>
+      <p>On-site occupational health and workplace wellbeing services across London and the South East.</p>
+      <h3>Using an AI assistant?</h3>
+      <p>An agent acting with your permission can submit a general enquiry using our <a href="/contact-api.json">OpenAPI specification</a>. No API key, browser session or CAPTCHA is required.</p>
+      <p>Agents must show you the message and obtain your approval before sending it. The same contact data notice, no-medical-information restriction and rate limits apply.</p>
+      <p class="note">A success response means our email server accepted the enquiry for delivery, not that it has been read or reached the inbox. If delivery is unconfirmed, telephone us rather than automatically resending.</p>
+    </aside>
+  </div></main>
+  <footer class="footer"><div class="container footer-grid">
+    <div><strong>CocoHealth Ltd</strong><p>On-site occupational health and workplace wellbeing services across London and the South East.</p></div>
+    <div><a href="/contact.html">Contact us online</a><br><a href="tel:+447340677361">+44 7340 677 361</a><br><a href="/">www.cocohealth.co.uk</a></div>
+  </div></footer>
+</body>
+</html>
